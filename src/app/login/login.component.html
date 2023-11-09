@@ -1,0 +1,30 @@
+<mat-card id="form">
+  <mat-card-header>
+    <mat-card-title>Iniciar Sesión</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="usuarioLogin" (ngSubmit)="validarAcceso()">
+    <mat-form-field appearance="outline">
+      <mat-label>Ingrese su Usuario</mat-label>
+      <input formControlName="usuario" matInput placeholder="usuario" name="usuario">
+      <mat-icon matSuffix>account_box</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ingrese Password</mat-label>
+      <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" name="password" />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-card-actions align="end">
+      <button >Iniciar sesion</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
