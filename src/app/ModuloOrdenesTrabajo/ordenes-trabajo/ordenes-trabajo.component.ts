@@ -18,7 +18,6 @@ export interface OrdenDeTrabajo {
 export const ORDENES_DE_TRABAJO_DATA: OrdenDeTrabajo[] = [
   { id: 1, tarea: 'Reparación de equipos', fecha: new Date('2023-01-01'), estado: 'En progreso', cliente: 'Cliente A', empleadoAsignado: 'Empleado 1' },
   { id: 2, tarea: 'Instalación de software', fecha: new Date('2023-02-15'), estado: 'Completada', cliente: 'Cliente B', empleadoAsignado: 'Empleado 2' },
-  // Agrega más datos según sea necesario
 ];
 
 @Component({
@@ -75,11 +74,8 @@ export class OrdenesTrabajoComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe((result: OrdenDeTrabajo) => {
       if (result) {
-        // Genera el próximo ID
         const nextId = this.dataSource.data.length > 0 ? Math.max(...this.dataSource.data.map(item => item.id)) + 1 : 1;
         result.id = nextId;
-
-        // Agrega la nueva orden a tu dataSource
         this.dataSource.data = [...this.dataSource.data, result];
       }
     });
@@ -103,7 +99,6 @@ export class OrdenesTrabajoComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe((result: { empleadoAsignado: string }) => {
       if (result) {
-        // Actualiza el valor de empleadoAsignado en tu dataSource
         const index = this.dataSource.data.findIndex(item => item.id === element.id);
         if (index >= 0) {
           this.dataSource.data[index].empleadoAsignado = result.empleadoAsignado;

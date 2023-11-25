@@ -78,7 +78,7 @@ export class InventarioComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: PiezaMaterial) => {
       if (result) {
         dataSource.data = [...dataSource.data, result];
-        dataSource._updateChangeSubscription(); // Añadido para forzar la actualización
+        dataSource._updateChangeSubscription();
       }
     });
   }

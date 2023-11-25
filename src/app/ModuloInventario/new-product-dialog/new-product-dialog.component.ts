@@ -9,8 +9,7 @@ import { PiezaMaterial } from '../inventario/inventario.component';
   styleUrls: ['./new-product-dialog.component.css']
 })
 export class NewProductDialogComponent {
-  nuevoForm: FormGroup; // Asegúrate de definir el formulario
-
+  nuevoForm: FormGroup; 
   constructor(
     public dialogRef: MatDialogRef<NewProductDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PiezaMaterial,

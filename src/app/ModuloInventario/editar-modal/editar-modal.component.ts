@@ -9,14 +9,13 @@ import { PiezaMaterial } from '../inventario/inventario.component';
   styleUrls: ['./editar-modal.component.css']
 })
 export class EditarModalComponent {
-  modifyForm: FormGroup; // Define el formulario
+  modifyForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<EditarModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PiezaMaterial,
-    private formBuilder: FormBuilder // Inyecta FormBuilder
+    private formBuilder: FormBuilder
   ) {
-    // Inicializa el formulario con los datos actuales
     this.modifyForm = this.formBuilder.group({
       id: [data.id, Validators.required],
       nombre: [data.nombre, Validators.required],

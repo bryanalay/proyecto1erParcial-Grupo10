@@ -1,5 +1,5 @@
 <div class="item">
-  <!-- ordenes-trabajo.component.html -->
+  <br><br>
   <mat-form-field>
     <mat-label>Filtrar Órdenes de Trabajo</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. tarea" />
@@ -10,7 +10,6 @@
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <!-- Definición de columnas para Órdenes de Trabajo -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> Id. </th>
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
