@@ -1,0 +1,14 @@
+/* modify-dialog.component.css */
+:host {
+  display: block;
+  width: 300px;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+mat-dialog-actions {
+  justify-content: flex-end;
+}

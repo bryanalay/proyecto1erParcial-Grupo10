@@ -1,1 +1,93 @@
-<p>inventario works!</p>
+<mat-form-field>
+  <mat-label>Filtrar Piezas</mat-label>
+  <input matInput (keyup)="applyFilterPiezas($event)" placeholder="Ex. ium" />
+  <button mat-icon-button (click)="openNuevoDialog(dataSourcePiezas)">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSourcePiezas" class="mat-elevation-z8">
+
+  <!-- Definición de columnas para Piezas -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id. </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="descripcion">
+    <th mat-header-cell *matHeaderCellDef> Descripción </th>
+    <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cantidad">
+    <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+    <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="modify(element, dataSourcePiezas)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="delete(element, dataSourcePiezas)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-form-field>
+  <mat-label>Filtrar Materiales</mat-label>
+  <input matInput (keyup)="applyFilterMateriales($event)" placeholder="Ex. ium" />
+  <button mat-icon-button (click)="openNuevoDialog(dataSourceMateriales)">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSourceMateriales" class="mat-elevation-z8">
+
+  <!-- Definición de columnas para Materiales -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id. </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="descripcion">
+    <th mat-header-cell *matHeaderCellDef> Descripción </th>
+    <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cantidad">
+    <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+    <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="modify(element, dataSourceMateriales)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="delete(element, dataSourceMateriales)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -20,8 +20,10 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InventarioComponent } from './ModuloInventario/inventario/inventario.component';
-import { MaterialesModalComponent } from './ModuloInventario/materiales-modal/materiales-modal.component';
-import { PiezasModalComponent } from './ModuloInventario/piezas-modal/piezas-modal.component';
+import {MatTableModule} from '@angular/material/table';
+import { EditarModalComponent } from './ModuloInventario/editar-modal/editar-modal.component';
+import { NewProductDialogComponent } from './ModuloInventario/new-product-dialog/new-product-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -32,8 +34,8 @@ import { PiezasModalComponent } from './ModuloInventario/piezas-modal/piezas-mod
     InitialPageComponent,
     DashboardComponent,
     InventarioComponent,
-    MaterialesModalComponent,
-    PiezasModalComponent,
+    EditarModalComponent,
+    NewProductDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ import { PiezasModalComponent } from './ModuloInventario/piezas-modal/piezas-mod
     MatInputModule,
     MatTabsModule,
     ReactiveFormsModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

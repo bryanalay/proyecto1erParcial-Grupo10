@@ -1,0 +1,38 @@
+/* Estilos generales para la página */
+.mat-form-field {
+  margin-bottom: 16px;
+}
+
+/* Estilos para las tablas */
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mat-table {
+  width: 80%;
+  margin-top: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para las celdas de la tabla */
+.mat-cell {
+  text-align: center;
+}
+
+/* Estilos para las acciones (botones de editar y eliminar) */
+.mat-icon-button {
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+/* Estilos para el filtro de la tabla */
+.mat-form-field {
+  width: 100%;
+}
+
+/* Estilos para el espacio entre las tablas */
+.table-separator {
+  margin-top: 32px;
+}
