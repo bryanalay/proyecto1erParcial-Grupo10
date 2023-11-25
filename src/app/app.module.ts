@@ -23,6 +23,12 @@ import { InventarioComponent } from './ModuloInventario/inventario/inventario.co
 import {MatTableModule} from '@angular/material/table';
 import { EditarModalComponent } from './ModuloInventario/editar-modal/editar-modal.component';
 import { NewProductDialogComponent } from './ModuloInventario/new-product-dialog/new-product-dialog.component';
+import { OrdenesTrabajoComponent } from './ModuloOrdenesTrabajo/ordenes-trabajo/ordenes-trabajo.component';
+import { EditarOrdenModalComponent } from './ModuloOrdenesTrabajo/editar-orden-modal/editar-orden-modal.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { NuevaOrdenComponent } from './ModuloOrdenesTrabajo/nueva-orden/nueva-orden.component';
+import { AsignarTecnicoModalComponent } from './ModuloOrdenesTrabajo/asignar-tecnico-modal/asignar-tecnico-modal.component';
 
 
 @NgModule({
@@ -35,7 +41,11 @@ import { NewProductDialogComponent } from './ModuloInventario/new-product-dialog
     DashboardComponent,
     InventarioComponent,
     EditarModalComponent,
-    NewProductDialogComponent
+    NewProductDialogComponent,
+    OrdenesTrabajoComponent,
+    EditarOrdenModalComponent,
+    NuevaOrdenComponent,
+    AsignarTecnicoModalComponent
   ],
   imports: [
     BrowserModule,
@@ -51,8 +61,11 @@ import { NewProductDialogComponent } from './ModuloInventario/new-product-dialog
     MatTabsModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatOptionModule
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

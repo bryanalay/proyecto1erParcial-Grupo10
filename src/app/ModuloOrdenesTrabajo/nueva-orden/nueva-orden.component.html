@@ -1,0 +1,19 @@
+<!-- nuevo-orden-modal.component.html -->
+<h1 mat-dialog-title>Agregar Nueva Orden de Trabajo</h1>
+<div mat-dialog-content>
+  <form [formGroup]="nuevaOrdenForm">
+    <mat-form-field>
+      <input matInput placeholder="Tarea" formControlName="tarea" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Estado" formControlName="estado" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Cliente" formControlName="cliente" required>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancelar</button>
+  <button mat-button color="primary" (click)="onSaveClick()">Guardar</button>
+</div>

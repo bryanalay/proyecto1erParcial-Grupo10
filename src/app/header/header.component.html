@@ -6,6 +6,7 @@
   <mat-card-actions align="end" id="acts">
     <a *ngIf="isLogged" [routerLink]="['/dashboard']">Dashboard</a>
     <a *ngIf="isLogged" [routerLink]="['/inventario']">Inventario</a>
+    <a *ngIf="isLogged" [routerLink]="['/ordenesTrabajo']">OrdenesTrabajo</a>
     <a href="/" *ngIf="!isLogged">Home</a>
     <mat-icon *ngIf="isLogged">account_box</mat-icon>
     <button mat-button (click)="openlogin()">{{ isLogged ? 'Cerrar sesión' : 'Iniciar sesión' }}</button>

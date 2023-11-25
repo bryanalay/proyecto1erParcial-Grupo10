@@ -1,0 +1,25 @@
+.item{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 200px;
+    height: 200px;
+    float: left;
+    background-color: #fff;
+    box-shadow: 0 0 10px #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.mat-form-field {
+    display: flex;
+    align-items: center;  /* Alinea verticalmente los elementos dentro del mat-form-field */
+    width:130px;  /* Hace que el mat-form-field ocupe todo el espacio disponible */
+}
+  
+  input {
+    flex: 1;  /* Hace que el input ocupe todo el espacio disponible */
+    margin-right: 8px;  /* Añade un margen a la derecha para separar el input del botón */
+  }
+  

@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditarModalComponent } from '../editar-modal/editar-modal.component';
 import { NewProductDialogComponent } from '../new-product-dialog/new-product-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export interface PiezaMaterial {
   id: number;
@@ -102,4 +101,3 @@ const MATERIALES_DATA: PiezaMaterial[] = [
   { id: 5, nombre: 'Vidrio', descripcion: 'Placa de vidrio', cantidad: 60 },
   { id: 6, nombre: 'Madera', descripcion: 'Tablón de madera', cantidad: 90 },
 ];
-
