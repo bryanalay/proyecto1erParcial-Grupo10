@@ -19,6 +19,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { InventarioComponent } from './ModuloInventario/inventario/inventario.component';
+import { MaterialesModalComponent } from './ModuloInventario/materiales-modal/materiales-modal.component';
+import { PiezasModalComponent } from './ModuloInventario/piezas-modal/piezas-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HeaderComponent,
     FooterComponent,
     InitialPageComponent,
-    DashboardComponent
+    DashboardComponent,
+    InventarioComponent,
+    MaterialesModalComponent,
+    PiezasModalComponent,
   ],
   imports: [
     BrowserModule,

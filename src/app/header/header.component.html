@@ -4,8 +4,10 @@
     <mat-card-subtitle>Equipos & Sistemas</mat-card-subtitle>
   </mat-card-header>
   <mat-card-actions align="end" id="acts">
-    <a href="/">Home</a>
-    <mat-icon>account_box</mat-icon>
-    <button mat-button (click)="openlogin()">Iniciar sesion</button>
+    <a *ngIf="isLogged" [routerLink]="['/dashboard']">Dashboard</a>
+    <a *ngIf="isLogged" [routerLink]="['/inventario']">Inventario</a>
+    <a href="/" *ngIf="!isLogged">Home</a>
+    <mat-icon *ngIf="isLogged">account_box</mat-icon>
+    <button mat-button (click)="openlogin()">{{ isLogged ? 'Cerrar sesión' : 'Iniciar sesión' }}</button>
   </mat-card-actions>
 </mat-card>
