@@ -17,8 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
-import { ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InventarioComponent } from './ModuloInventario/inventario/inventario.component';
 import {MatTableModule} from '@angular/material/table';
 import { EditarModalComponent } from './ModuloInventario/editar-modal/editar-modal.component';
@@ -29,6 +28,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { NuevaOrdenComponent } from './ModuloOrdenesTrabajo/nueva-orden/nueva-orden.component';
 import { AsignarTecnicoModalComponent } from './ModuloOrdenesTrabajo/asignar-tecnico-modal/asignar-tecnico-modal.component';
+import { RegistroUsuarioComponent } from './ModuloGestionUsuario/registro-usuario/registro-usuario.component';
 
 
 @NgModule({
@@ -38,17 +38,18 @@ import { AsignarTecnicoModalComponent } from './ModuloOrdenesTrabajo/asignar-tec
     HeaderComponent,
     FooterComponent,
     InitialPageComponent,
-    DashboardComponent,
     InventarioComponent,
     EditarModalComponent,
     NewProductDialogComponent,
     OrdenesTrabajoComponent,
     EditarOrdenModalComponent,
     NuevaOrdenComponent,
-    AsignarTecnicoModalComponent
+    AsignarTecnicoModalComponent,
+    RegistroUsuarioComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
@@ -63,7 +64,7 @@ import { AsignarTecnicoModalComponent } from './ModuloOrdenesTrabajo/asignar-tec
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatOptionModule
+    MatOptionModule,
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

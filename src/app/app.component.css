@@ -15,7 +15,7 @@
 .mat-form-field {
     display: flex;
     align-items: center;  /* Alinea verticalmente los elementos dentro del mat-form-field */
-    width:130px;  /* Hace que el mat-form-field ocupe todo el espacio disponible */
+    width: 100%;  /* Hace que el mat-form-field ocupe todo el espacio disponible */
 }
   
   input {
