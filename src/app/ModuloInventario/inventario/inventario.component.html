@@ -4,7 +4,7 @@
     <mat-label>Filtrar Piezas</mat-label>
     <input matInput (keyup)="applyFilterPiezas($event)" placeholder="Ex. ium" />
   </mat-form-field>
-    <button mat-icon-button (click)="openNuevoDialog(dataSourcePiezas)">
+    <button mat-icon-button (click)="openNuevoDialog(dataSourcePiezas,1)">
       <mat-icon>add</mat-icon>
     </button>
   
@@ -46,11 +46,13 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <br><br><br>
+
+  
   <mat-form-field>
     <mat-label>Filtrar Materiales</mat-label>
     <input matInput (keyup)="applyFilterMateriales($event)" placeholder="Ex. ium" />
   </mat-form-field>
-    <button mat-icon-button (click)="openNuevoDialog(dataSourceMateriales)">
+    <button mat-icon-button (click)="openNuevoDialog(dataSourceMateriales,2)">
       <mat-icon>add</mat-icon>
     </button>
   

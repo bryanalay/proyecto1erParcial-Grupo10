@@ -4,21 +4,23 @@ import { MatTableDataSource } from '@angular/material/table';
 import { EditarOrdenModalComponent } from '../editar-orden-modal/editar-orden-modal.component';
 import { NuevaOrdenComponent } from '../nueva-orden/nueva-orden.component';
 import { AsignarTecnicoModalComponent } from '../asignar-tecnico-modal/asignar-tecnico-modal.component';
+import { OrdenService } from 'src/app/orden.service';
+import { OrdenInterface } from 'src/app/interfaces/OrdenInterface';
 
 
-export interface OrdenDeTrabajo {
-  id: number;
-  tarea: string;
-  fecha: Date;
-  estado: string;
-  cliente: string;
-  empleadoAsignado: string;
-}
+// export interface OrdenDeTrabajo {
+//   id: number;
+//   tarea: string;
+//   fecha: string;
+//   estado: string;
+//   cliente: string;
+//   empleadoAsignado: string;
+// }
 
-export const ORDENES_DE_TRABAJO_DATA: OrdenDeTrabajo[] = [
-  { id: 1, tarea: 'Reparación de equipos', fecha: new Date('2023-01-01'), estado: 'En progreso', cliente: 'Cliente A', empleadoAsignado: 'Empleado 1' },
-  { id: 2, tarea: 'Instalación de software', fecha: new Date('2023-02-15'), estado: 'Completada', cliente: 'Cliente B', empleadoAsignado: 'Empleado 2' },
-];
+// export const ORDENES_DE_TRABAJO_DATA: OrdenInterface[] = [
+//   { id: 1, tarea: 'Reparación de equipos', fecha: new Date('2023-01-01'), estado: 'En progreso', cliente: 'Cliente A', empleadoAsignado: 'Empleado 1' },
+//   { id: 2, tarea: 'Instalación de software', fecha: new Date('2023-02-15'), estado: 'Completada', cliente: 'Cliente B', empleadoAsignado: 'Empleado 2' },
+// ];
 
 @Component({
   selector: 'app-ordenes-trabajo',
@@ -27,18 +29,15 @@ export const ORDENES_DE_TRABAJO_DATA: OrdenDeTrabajo[] = [
 })
 export class OrdenesTrabajoComponent implements OnInit{
   displayedColumns: string[] = ['id', 'tarea', 'fecha', 'estado', 'cliente', 'empleadoAsignado', 'acciones'];
-  dataSource = new MatTableDataSource<OrdenDeTrabajo>();
+  dataSource = new MatTableDataSource<OrdenInterface>();
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private ordService: OrdenService) {}
 
   ngOnInit(): void {
-    this.dataSource.data = [
-      { id: 1, tarea: 'Reparación de equipos', fecha: new Date('2023-01-01'), estado: 'En progreso', cliente: 'Cliente A', empleadoAsignado: 'Sin asignar' },
-      { id: 2, tarea: 'Instalación de software', fecha: new Date('2023-02-15'), estado: 'Completada', cliente: 'Cliente B', empleadoAsignado: 'Sin asignar' },
-      { id: 3, tarea: 'Mantenimiento de servidores', fecha: new Date('2023-03-10'), estado: 'Pendiente', cliente: 'Cliente C', empleadoAsignado: 'Sin asignar' },
-      { id: 4, tarea: 'Actualización de firmware', fecha: new Date('2023-04-05'), estado: 'En progreso', cliente: 'Cliente D', empleadoAsignado: 'Sin asignar' },
-      { id: 5, tarea: 'Configuración de red', fecha: new Date('2023-05-20'), estado: 'Completada', cliente: 'Cliente E', empleadoAsignado: 'Sin asignar' },
-    ];
+    this.ordService.getOrdenes().subscribe((data:any)=>{
+      console.log(data);
+      this.dataSource.data = [...data];
+    })
   }
 
   applyFilter(event: Event) {
@@ -46,13 +45,13 @@ export class OrdenesTrabajoComponent implements OnInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openModificarDialog(element: OrdenDeTrabajo, dataSource: MatTableDataSource<OrdenDeTrabajo>): void {
+  openModificarDialog(element: OrdenInterface, dataSource: MatTableDataSource<OrdenInterface>): void {
     const dialogRef = this.dialog.open(EditarOrdenModalComponent, {
       width: '300px',
       data: { ...element },
     });
 
-    dialogRef.afterClosed().subscribe((result: OrdenDeTrabajo) => {
+    dialogRef.afterClosed().subscribe((result: OrdenInterface) => {
       if (result) {
         const index = dataSource.data.findIndex(item => item.id === result.id);
         if (index >= 0) {
@@ -63,16 +62,17 @@ export class OrdenesTrabajoComponent implements OnInit{
     });
   }
 
-  modify(element: OrdenDeTrabajo, dataSource: MatTableDataSource<OrdenDeTrabajo>) {
+  modify(element: OrdenInterface, dataSource: MatTableDataSource<OrdenInterface>) {
     this.openModificarDialog(element, dataSource);
   }
 
   openNuevoDialog(): void {
     const dialogRef = this.dialog.open(NuevaOrdenComponent, {
       width: '300px',
+      data: { tarea: '', fecha: '', estado: '', cliente: '', empleadoAsignado: ''},
     });
 
-    dialogRef.afterClosed().subscribe((result: OrdenDeTrabajo) => {
+    dialogRef.afterClosed().subscribe((result: OrdenInterface) => {
       if (result) {
         const nextId = this.dataSource.data.length > 0 ? Math.max(...this.dataSource.data.map(item => item.id)) + 1 : 1;
         result.id = nextId;
@@ -81,20 +81,26 @@ export class OrdenesTrabajoComponent implements OnInit{
     });
   }
 
-  eliminar(element: OrdenDeTrabajo, dataSource: MatTableDataSource<OrdenDeTrabajo>): void {
+  eliminar(element: OrdenInterface, dataSource: MatTableDataSource<OrdenInterface>): void {
     const index = dataSource.data.indexOf(element);
 
     if (index >= 0) {
       dataSource.data.splice(index, 1);
+      console.log("este es el index de elemento a eliminar", index);
+      this.ordService.deleteOrden(element.id).subscribe((data:any)=>{
+        console.log(data);
+      })
+
       dataSource.data = [...dataSource.data];
     }
     console.log('Eliminar clickeado:', element);
   }
 
-  openEditarEmpleadoDialog(element: OrdenDeTrabajo): void {
+  openEditarEmpleadoDialog(element: OrdenInterface): void {
     const dialogRef = this.dialog.open(AsignarTecnicoModalComponent, {
       width: '300px',
-      data: { empleadoAsignado: element.empleadoAsignado },
+      data: { empleadoAsignado: element.empleadoAsignado,
+      id: element.id},
     });
 
     dialogRef.afterClosed().subscribe((result: { empleadoAsignado: string }) => {

@@ -1,7 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { OrdenDeTrabajo } from '../ordenes-trabajo/ordenes-trabajo.component';
+import { OrdenInterface } from 'src/app/interfaces/OrdenInterface';
+import { OrdenService } from 'src/app/orden.service';
+import { SP } from 'src/Shared/SP';
+const { Orden } = SP;
 
 @Component({
   selector: 'app-nueva-orden',
@@ -13,15 +16,17 @@ export class NuevaOrdenComponent {
 
   constructor(
     public dialogRef: MatDialogRef<NuevaOrdenComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: OrdenDeTrabajo,
-    private formBuilder: FormBuilder
+    @Inject(MAT_DIALOG_DATA) public data: OrdenInterface,
+    private formBuilder: FormBuilder,
+    private ordService: OrdenService
   ) {
     this.nuevaOrdenForm = this.formBuilder.group({
-      tarea: ['', Validators.required],
-      fecha: [new Date(), Validators.required],
-      estado: ['', Validators.required],
-      cliente: ['', Validators.required],
-      empleadoAsignado: ['Sin asignar', Validators.required],
+      tarea: [data.tarea, Validators.required],
+      fecha: new Date(),
+      estado: [data.estado, Validators.required],
+      cliente: [data.cliente, Validators.required],
+      empleadoAsignado: "",
+      transaccion: Orden.PostOrden.transaction,
     });
   }
 
@@ -31,7 +36,10 @@ export class NuevaOrdenComponent {
 
   onSaveClick(): void {
     if (this.nuevaOrdenForm.valid) {
-      const nuevaOrden: OrdenDeTrabajo = this.nuevaOrdenForm.value;
+      const nuevaOrden: OrdenInterface = this.nuevaOrdenForm.value;
+      this.ordService.saveOrden(nuevaOrden).subscribe((data:any)=>{
+        console.log(data);
+      })
       this.dialogRef.close(nuevaOrden);
     }
   }

@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { OrdenInterface } from 'src/app/interfaces/OrdenInterface';
+import { OrdenService } from 'src/app/orden.service';
 
 @Component({
   selector: 'app-asignar-tecnico-modal',
@@ -12,11 +14,14 @@ export class AsignarTecnicoModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AsignarTecnicoModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { empleadoAsignado: string },
-    private formBuilder: FormBuilder
+    @Inject(MAT_DIALOG_DATA) public data: { empleadoAsignado: string,
+    id: number},
+    private formBuilder: FormBuilder,
+    private ordService: OrdenService
   ) {
     this.editarEmpleadoForm = this.formBuilder.group({
       empleadoAsignado: [data.empleadoAsignado, Validators.required],
+      id: data.id
     });
   }
 
@@ -26,8 +31,13 @@ export class AsignarTecnicoModalComponent {
 
   onSaveClick(): void {
     if (this.editarEmpleadoForm.valid) {
-      const nuevoEmpleado: string = this.editarEmpleadoForm.value.empleadoAsignado;
-      this.dialogRef.close({ empleadoAsignado: nuevoEmpleado });
+      const nuevoEmpleado: OrdenInterface = this.editarEmpleadoForm.value;
+      console.log("este es el nevo empleado: ", nuevoEmpleado);
+      console.log("desde onsaveclick: ", this.editarEmpleadoForm.value);
+      this.ordService.updateEmpleado(nuevoEmpleado).subscribe((data:any)=>{
+        console.log(data);
+      })
+      this.dialogRef.close(nuevoEmpleado);
     }
   }
 }

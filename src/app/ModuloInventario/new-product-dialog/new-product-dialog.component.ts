@@ -1,7 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PiezaMaterial } from '../inventario/inventario.component';
+import { InventarioService } from 'src/app/inventario.service';
+import { InventarioInterface } from 'src/app/interfaces/InventarioInterface';
+import { SP } from 'src/Shared/SP';
+const { Inventario } = SP;
 
 @Component({
   selector: 'app-new-product-dialog',
@@ -12,14 +15,16 @@ export class NewProductDialogComponent {
   nuevoForm: FormGroup; 
   constructor(
     public dialogRef: MatDialogRef<NewProductDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: PiezaMaterial,
-    private formBuilder: FormBuilder
+    @Inject(MAT_DIALOG_DATA) public data: InventarioInterface,
+    private formBuilder: FormBuilder,
+    private invService: InventarioService
   ) {
     this.nuevoForm = this.formBuilder.group({
-      id: [data.id, Validators.required],
       nombre: [data.nombre, Validators.required],
       descripcion: [data.descripcion, Validators.required],
       cantidad: [data.cantidad, Validators.required],
+      transaccion: Inventario.PostInventario.transaction,
+      tipo: data.tipo
     });
   }
 
@@ -29,7 +34,11 @@ export class NewProductDialogComponent {
 
   onSaveClick(): void {
     if (this.nuevoForm.valid) {
-      const newItem: PiezaMaterial = this.nuevoForm.value;
+      const newItem: InventarioInterface = this.nuevoForm.value;
+      console.log(newItem);
+      this.invService.saveInventario(newItem).subscribe((data:any)=>{
+        console.log(data);
+      })
       this.dialogRef.close(newItem);
     }
   }

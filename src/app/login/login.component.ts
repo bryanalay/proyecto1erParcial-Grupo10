@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticacionServiceService } from '../autenticacion-service.service';
+import { AuthService } from '../auth.service';
+import { UsuarioInterface } from '../interfaces/UsuarioInterface';
 
 @Component({
   selector: 'app-login',
@@ -9,22 +11,33 @@ import { AutenticacionServiceService } from '../autenticacion-service.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private router: Router, private authService: AutenticacionServiceService) {}
+  constructor(private service: AuthService,private router: Router, private authService: AutenticacionServiceService) {}
   hide = true;
   tmp_usuario: any;
 
   usuarioLogin = new FormGroup({
     usuario: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
+    password: new FormControl('', Validators.required),
+    transaccion: new FormControl()
   });
 
   validarAcceso() {
+    this.usuarioLogin.value.transaccion = 'USUARIO_LOGIN';
     this.tmp_usuario = this.usuarioLogin.value.usuario;
-    if (this.tmp_usuario == 'bryan' && this.usuarioLogin.value.password == '12345') {
+
+    this.service.login(this.usuarioLogin.value as UsuarioInterface).subscribe((data:any)=>{
+      localStorage.setItem('usuario', this.tmp_usuario);
+      localStorage.setItem('token', data);
       this.authService.login(this.tmp_usuario);
       this.router.navigate(['/inventario']);
-    } else {
-      alert('Usuario o contraseña incorrectos');
-    }
+    })
+
+
+    // if (this.tmp_usuario == 'bryan' && this.usuarioLogin.value.password == '12345') {
+    //   this.authService.login(this.tmp_usuario);
+    //   this.router.navigate(['/inventario']);
+    // } else {
+    //   alert('Usuario o contraseña incorrectos');
+    // }
   }
 }

@@ -29,7 +29,8 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { NuevaOrdenComponent } from './ModuloOrdenesTrabajo/nueva-orden/nueva-orden.component';
 import { AsignarTecnicoModalComponent } from './ModuloOrdenesTrabajo/asignar-tecnico-modal/asignar-tecnico-modal.component';
 import { RegistroUsuarioComponent } from './ModuloGestionUsuario/registro-usuario/registro-usuario.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -65,8 +66,9 @@ import { RegistroUsuarioComponent } from './ModuloGestionUsuario/registro-usuari
     MatDatepickerModule,
     MatNativeDateModule,
     MatOptionModule,
+    HttpClientModule
   ],
-  providers: [MatDatepickerModule],
+  providers: [MatDatepickerModule,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,7 +3,7 @@
 <div mat-dialog-content>
   <form [formGroup]="modifyForm">
     <mat-form-field>
-      <input matInput placeholder="ID" formControlName="id">
+      <input matInput placeholder="ID" formControlName="id" [readonly]="true">
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="Nombre" formControlName="nombre">
@@ -12,7 +12,7 @@
       <input matInput placeholder="Descripción" formControlName="descripcion">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Cantidad" formControlName="cantidad">
+      <input matInput placeholder="Cantidad" formControlName="cantidad" type="number">
     </mat-form-field>
   </form>
 </div>

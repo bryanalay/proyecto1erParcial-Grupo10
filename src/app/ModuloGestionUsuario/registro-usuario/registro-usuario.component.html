@@ -1,37 +1,56 @@
 <div class="container w-75 p-5">
-  <div class=" row">
-      <div class="col">
-          <ul class="list-group">
-              <li  *ngFor="let usuarios of UsuarioArray"
-              class="list-group-item mt-1 list-group-item-action"
-              (click)="Editar(usuarios)"
-              [class.active]="usuarios == seleccionarUsuario"
-              >
-             
-              {{usuarios.Name}}</li>
-          </ul>
-          <div class="card mt-5">
-              <div class="card-body">
-                  <div class="card-title">
-                      Rellene los Datos para Registrarse:
-                  </div>
-                  <div class="form-group">
-<input type="text" (ngModel)="seleccionarUsuario.Name" placeholder="Inserte su Nombre:" class="form-control">
-                  </div>
-                  <div class="form-group mt-2">
-<input type="text" (ngModel)="seleccionarUsuario.Ced" placeholder="Inserte su Numero de Cedula:" class="form-control">
-                  </div>   
-                  <div class="form-group mt-2">
-<input type="text" (ngModel)="seleccionarUsuario.NumTel" placeholder="Inserte su Numero Celular:" class="form-control">
-                  </div>    
-                  <div class="form-group mt-2">
-<input type="text" (ngModel)="seleccionarUsuario.Core" placeholder="Inserte su Correo Electronico:" class="form-control">
-                  </div> 
-                  <button (click)="RegistrarEditar()" class="btn btn-dark mt-3" >
-                      Registrate!
-                  </button>
-              </div>
+  <div class="row">
+    <div class="col">
+      <ul class="list-group">
+        <li
+          *ngFor="let usuario of UsuarioArray"
+          class="list-group-item mt-1 list-group-item-action"
+          (click)="Editar(usuario)"
+          [class.active]="usuario == seleccionarUsuario"
+        >
+          {{ usuario.Name }}
+        </li>
+      </ul>
+      <div class="card mt-5">
+        <div class="card-body">
+          <div class="card-title">Rellene los Datos para Registrarse:</div>
+          <div class="form-group">
+            <input
+              type="text"
+              (ngModel)="(seleccionarUsuario.Name)"
+              placeholder="Inserte su Nombre:"
+              class="form-control"
+            />
           </div>
-          </div>  
+          <div class="form-group mt-2">
+            <input
+              type="text"
+              (ngModel)="(seleccionarUsuario.Ced)"
+              placeholder="Inserte su Numero de Cedula:"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mt-2">
+            <input
+              type="text"
+              (ngModel)="(seleccionarUsuario.NumTel)"
+              placeholder="Inserte su Numero Celular:"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mt-2">
+            <input
+              type="text"
+              (ngModel)="(seleccionarUsuario.Core)"
+              placeholder="Inserte su Correo Electronico:"
+              class="form-control"
+            />
+          </div>
+          <button (click)="RegistrarEditar()" class="btn btn-dark mt-3">
+            Registrate!
+          </button>
+        </div>
       </div>
+    </div>
   </div>
+</div>
