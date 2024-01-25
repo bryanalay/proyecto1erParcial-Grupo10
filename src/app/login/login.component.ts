@@ -31,13 +31,5 @@ export class LoginComponent {
       this.authService.login(this.tmp_usuario);
       this.router.navigate(['/inventario']);
     })
-
-
-    // if (this.tmp_usuario == 'bryan' && this.usuarioLogin.value.password == '12345') {
-    //   this.authService.login(this.tmp_usuario);
-    //   this.router.navigate(['/inventario']);
-    // } else {
-    //   alert('Usuario o contraseña incorrectos');
-    // }
   }
 }

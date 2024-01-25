@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PiezaMaterial } from '../inventario/inventario.component';
 import { InventarioInterface } from 'src/app/interfaces/InventarioInterface';
 import { InventarioService } from 'src/app/inventario.service';
 import { SP } from 'src/Shared/SP';

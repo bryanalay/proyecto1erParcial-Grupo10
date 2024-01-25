@@ -7,21 +7,6 @@ import { AsignarTecnicoModalComponent } from '../asignar-tecnico-modal/asignar-t
 import { OrdenService } from 'src/app/orden.service';
 import { OrdenInterface } from 'src/app/interfaces/OrdenInterface';
 
-
-// export interface OrdenDeTrabajo {
-//   id: number;
-//   tarea: string;
-//   fecha: string;
-//   estado: string;
-//   cliente: string;
-//   empleadoAsignado: string;
-// }
-
-// export const ORDENES_DE_TRABAJO_DATA: OrdenInterface[] = [
-//   { id: 1, tarea: 'Reparación de equipos', fecha: new Date('2023-01-01'), estado: 'En progreso', cliente: 'Cliente A', empleadoAsignado: 'Empleado 1' },
-//   { id: 2, tarea: 'Instalación de software', fecha: new Date('2023-02-15'), estado: 'Completada', cliente: 'Cliente B', empleadoAsignado: 'Empleado 2' },
-// ];
-
 @Component({
   selector: 'app-ordenes-trabajo',
   templateUrl: './ordenes-trabajo.component.html',

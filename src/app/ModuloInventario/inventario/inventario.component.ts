@@ -6,13 +6,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { InventarioService } from 'src/app/inventario.service';
 import { InventarioInterface } from 'src/app/interfaces/InventarioInterface';
 
-export interface PiezaMaterial {
-  id: number;
-  nombre: string;
-  descripcion: string;
-  cantidad: number;
-}
-
 @Component({
   selector: 'app-inventario',
   templateUrl: './inventario.component.html',
@@ -106,21 +99,3 @@ export class InventarioComponent implements OnInit {
     });
   }
 }
-
-const PIEZAS_DATA: PiezaMaterial[] = [
-  { id: 1, nombre: 'Tuerca', descripcion: 'Tuerca hexagonal', cantidad: 100 },
-  { id: 2, nombre: 'Tornillo', descripcion: 'Tornillo para madera', cantidad: 50 },
-  { id: 3, nombre: 'Resorte', descripcion: 'Resorte de compresión', cantidad: 30 },
-  { id: 4, nombre: 'Engranaje', descripcion: 'Engranaje de acero', cantidad: 25 },
-  { id: 5, nombre: 'Arandela', descripcion: 'Arandela plana', cantidad: 80 },
-  { id: 6, nombre: 'Perno', descripcion: 'Perno de fijación', cantidad: 40 },
-];
-
-// const MATERIALES_DATA: InventarioInterface[] = [
-//   { Id: 1, nombre: 'Acero', descripcion: 'Plancha de acero', cantidad: 200 },
-//   { id: 2, nombre: 'Aluminio', descripcion: 'Perfiles de aluminio', cantidad: 80 },
-//   { id: 3, nombre: 'Plástico', descripcion: 'Polímero termoplástico', cantidad: 120 },
-//   { id: 4, nombre: 'Cobre', descripcion: 'Bobina de cobre', cantidad: 35 },
-//   { id: 5, nombre: 'Vidrio', descripcion: 'Placa de vidrio', cantidad: 60 },
-//   { id: 6, nombre: 'Madera', descripcion: 'Tablón de madera', cantidad: 90 },
-// ];
